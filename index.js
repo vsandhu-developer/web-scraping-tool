@@ -1,4 +1,5 @@
 import puppeteer from "puppeteer";
+import { analyzeScrapedData } from "./analyzeData";
 
 async function scrapeWebsite(url) {
   const browser = await puppeteer.launch({ headless: true });
@@ -62,8 +63,8 @@ async function scrapeWebsite(url) {
   const result = await scrapeWebsite("https://codepaper.com");
   console.log(JSON.stringify(result));
   // // pass to llm
-  // const dataAnalyzed = await analyzeScrapedData(JSON.stringify(result));
-  // console.log(dataAnalyzed);
+  const dataAnalyzed = await analyzeScrapedData(JSON.stringify(result));
+  console.log(dataAnalyzed);
   // // find competitors
   // const competitors = await findCompetitors(JSON.stringify(dataAnalyzed));
   // console.log(competitors);
